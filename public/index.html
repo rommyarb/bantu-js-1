@@ -6,43 +6,48 @@
     <title>Tugas JS</title>
     <style>
       #people {
-        display: grid;
+        /* display: grid; */
         margin-top: 10px;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         grid-column-gap: 10px;
-        grid-row-gap: 10px;
+        grid-row-gap: 10px; */
       }
     </style>
   </head>
   <body>
-    <div style="display: flex">
-      <div>
-        <div style="margin-bottom: 20px">
-          <div>Nama</div>
-          <input type="text" style="padding: 5px 5px" />
-        </div>
+    <form action="#" onsubmit="add();return false">
+      <div style="display: flex">
         <div>
-          <div>Gender</div>
-          <select style="width: 100%; padding: 5px 5px">
-            <option value="Pria">Pria</option>
-            <option value="Wanita">Wanita</option>
-          </select>
+          <div style="margin-bottom: 20px">
+            <div>Nama</div>
+            <input id="nama" type="text" style="padding: 5px 5px" />
+          </div>
+          <div>
+            <div>Gender</div>
+            <select id="gender" style="width: 100%; padding: 5px 5px">
+              <option value="Pria">Pria</option>
+              <option value="Wanita">Wanita</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-left: 20px">
+          <div style="margin-bottom: 20px">
+            <div>Umur</div>
+            <input id="umur" type="number" style="padding: 5px 5px" />
+          </div>
+          <div>
+            <div>Status</div>
+            <select id="status" style="width: 100%; padding: 5px 5px">
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+            </select>
+          </div>
         </div>
       </div>
-      <div style="margin-left: 20px">
-        <div style="margin-bottom: 20px">
-          <div>Umur</div>
-          <input type="number" style="padding: 5px 5px" />
-        </div>
-        <div>
-          <div>Status</div>
-          <select style="width: 100%; padding: 5px 5px">
-            <option value="Single">Single</option>
-            <option value="Married">Married</option>
-          </select>
-        </div>
-      </div>
-    </div>
+      <button style="margin-top: 30px; padding: 10px 10px" type="submit">
+        ADD PERSON
+      </button>
+    </form>
     <hr style="margin: 25px 0" />
     <div>
       <div>Find</div>
@@ -68,6 +73,38 @@
 </html>
 
 <script>
+  function add() {
+    var id = function () {
+      return "_" + Math.random().toString(36).substr(2, 9);
+    };
+    var person = {
+      id,
+      nama: document.getElementById("nama").value,
+      umur: document.getElementById("umur").value,
+      gender: document.getElementById("gender").value,
+      status: document.getElementById("status").value,
+    };
+    console.log("person:", person);
+    var stringPeople = localStorage.getItem("people");
+    var people = [];
+    if (stringPeople) {
+      people = JSON.parse(stringPeople);
+    }
+
+    people = [...people, person];
+    localStorage.setItem("people", JSON.stringify(people));
+
+    // refresh data
+    var filterNama = document.getElementById("filterNama").value;
+    getData(filterNama);
+
+    // reset fields
+    document.getElementById("nama").value = "";
+    document.getElementById("umur").value = "";
+    document.getElementById("gender").value = "";
+    document.getElementById("status").value = "";
+  }
+
   function find() {
     var filterNama = document.getElementById("filterNama").value;
     getData(filterNama);
@@ -76,9 +113,11 @@
     var peopleEL = document.getElementById("people");
     peopleEL.innerHTML = "";
 
-    var req = await fetch("data.json");
-    var json = await req.json();
-    var people = json.people;
+    var peopleString = localStorage.getItem("people");
+    var people = [];
+    if (peopleString) {
+      people = JSON.parse(peopleString);
+    }
     if (filterNama) {
       people = people.filter(function (person) {
         if (person.nama.toLowerCase().includes(filterNama.toLowerCase())) {
@@ -88,28 +127,32 @@
       });
     }
 
-    console.log(people);
+    if (people.length) {
+      people.forEach(function (person) {
+        var containerEl = document.createElement("div");
+        containerEl.style.border = "black 1px solid";
+        containerEl.style.padding = "5px 20px";
+        containerEl.style.backgroundColor = "lightgray";
+        containerEl.style.marginBottom = "10px";
 
-    people.forEach(function (person) {
-      var containerEl = document.createElement("div");
-      containerEl.style.border = "black 1px solid";
-      containerEl.style.padding = "5px 20px";
-      containerEl.style.backgroundColor = "lightgray";
+        var personEl = document.createElement("div");
+        personEl.innerHTML = `<div><img src="avatar.jpeg" style="width:30px;border-radius:9999px;margin-right:10px"/></div><div style="font-size:1.2rem">${person.nama}</div>`;
+        personEl.style.display = "flex";
+        personEl.style.alignItems = "center";
 
-      var personEl = document.createElement("div");
-      personEl.innerHTML = `<div><img src="avatar.jpeg" style="width:30px;border-radius:9999px;margin-right:10px"/></div><div style="font-size:1.2rem">${person.nama}</div>`;
-      personEl.style.display = "flex";
-      personEl.style.alignItems = "center";
+        var infoEl = document.createElement("div");
+        infoEl.style.display = "flex";
+        infoEl.style.alignItems = "center";
+        infoEl.innerHTML = `<div style="width:100%;">${person.gender} / ${person.umur} tahun</div><div style="text-align:right">${person.status}</div>`;
 
-      var infoEl = document.createElement("div");
-      infoEl.style.display = "flex";
-      infoEl.style.alignItems = "center";
-      infoEl.innerHTML = `<div style="width:100%;">${person.gender} / ${person.umur} tahun</div><div style="text-align:right">${person.status}</div>`;
-
-      containerEl.appendChild(personEl);
-      containerEl.appendChild(infoEl);
-      peopleEL.appendChild(containerEl);
-    });
+        containerEl.appendChild(personEl);
+        containerEl.appendChild(infoEl);
+        peopleEL.appendChild(containerEl);
+      });
+    } else {
+      peopleEL.innerHTML =
+        '<div style="margin-top:20px">(Belum ada data)</div>';
+    }
   }
 
   getData();
