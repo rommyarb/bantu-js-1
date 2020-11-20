@@ -1,0 +1,113 @@
+{
+  "people": [
+    {
+      "id": 1,
+      "email": "george.bluth@reqres.in",
+      "nama": "George Bluth",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg",
+      "umur": 25,
+      "gender": "Pria",
+      "status": "Single"
+    },
+    {
+      "id": 2,
+      "email": "janet.weaver@reqres.in",
+      "nama": "Janet Weaver",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg",
+      "umur": 25,
+      "gender": "Wanita",
+      "status": "Single"
+    },
+    {
+      "id": 3,
+      "email": "emma.wong@reqres.in",
+      "nama": "Emma Wong",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/olegpogodaev/128.jpg",
+      "umur": 25,
+      "gender": "Pria",
+      "status": "Married"
+    },
+    {
+      "id": 4,
+      "email": "eve.holt@reqres.in",
+      "nama": "Eve Holt",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/marcoramires/128.jpg",
+      "umur": 47,
+      "gender": "Pria",
+      "status": "Married"
+    },
+    {
+      "id": 5,
+      "email": "charles.morris@reqres.in",
+      "nama": "Charles Morris",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/stephenmoon/128.jpg",
+      "umur": 15,
+      "gender": "Pria",
+      "status": "Single"
+    },
+    {
+      "id": 6,
+      "email": "tracey.ramos@reqres.in",
+      "nama": "Tracey Ramos",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/bigmancho/128.jpg",
+      "umur": 35,
+      "gender": "Wanita",
+      "status": "Single"
+    },
+
+    {
+      "id": 7,
+      "email": "michael.lawson@reqres.in",
+      "nama": "Michael Lawson",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg",
+      "umur": 38,
+      "gender": "Pria",
+      "status": "Single"
+    },
+    {
+      "id": 8,
+      "email": "lindsay.ferguson@reqres.in",
+      "nama": "Lindsay Ferguson",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/araa3185/128.jpg",
+      "umur": 55,
+      "gender": "Wanita",
+      "status": "Married"
+    },
+    {
+      "id": 9,
+      "email": "tobias.funke@reqres.in",
+      "nama": "Tobias Funke",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/vivekprvr/128.jpg",
+      "umur": 25,
+      "gender": "Pria",
+      "status": "Single"
+    },
+    {
+      "id": 10,
+      "email": "byron.fields@reqres.in",
+      "nama": "Byron Fields",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/russoedu/128.jpg",
+      "umur": 25,
+      "gender": "Pria",
+      "status": "Single"
+    },
+    {
+      "id": 11,
+      "email": "george.edwards@reqres.in",
+      "nama": "George Edwards",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/mrmoiree/128.jpg",
+      "umur": 18,
+      "gender": "Pria",
+      "status": "Single"
+    },
+    {
+      "id": 12,
+      "email": "rachel.howell@reqres.in",
+      "nama": "Rachel Howell",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/hebertialmeida/128.jpg",
+      "umur": 33,
+      "gender": "Wanita",
+      "status": "Single"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas JS</title>
+  </head>
+  <body>
+    <div style="display: flex">
+      <div>
+        <div style="margin-bottom: 20px">
+          <div>Nama</div>
+          <input type="text" />
+        </div>
+        <div>
+          <div>Gender</div>
+          <select style="width: 100%">
+            <option value="Pria">Pria</option>
+            <option value="Wanita">Wanita</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-left: 20px">
+        <div style="margin-bottom: 20px">
+          <div>Umur</div>
+          <input type="number" />
+        </div>
+        <div>
+          <div>Status</div>
+          <select style="width: 100%">
+            <option value="Single">Single</option>
+            <option value="Married">Married</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <hr style="margin: 25px 0" />
+    <div>
+      <div>Find</div>
+      <form
+        style="display: flex; align-items: center"
+        action="#"
+        onsubmit="find();return false"
+      >
+        <input id="filterNama" type="text" placeholder="Masukkan nama..." />
+        <button style="margin-left: 2.5px" type="submit">Find</button>
+      </form>
+      <div id="people"></div>
+    </div>
+  </body>
+</html>
+
+<script>
+  function find() {
+    var filterNama = document.getElementById("filterNama").value;
+    getData(filterNama);
+  }
+  async function getData(filterNama) {
+    var peopleEL = document.getElementById("people");
+    peopleEL.innerHTML = "";
+
+    var req = await fetch("data.json");
+    var json = await req.json();
+    var people = json.people;
+    if (filterNama) {
+      people = people.filter(function (person) {
+        if (person.nama.toLowerCase().includes(filterNama.toLowerCase())) {
+          return true;
+        }
+        return false;
+      });
+    }
+
+    console.log(people);
+
+    people.forEach(function (person) {
+      var containerEl = document.createElement("div");
+      containerEl.style.marginTop = "10px";
+      containerEl.style.border = "black 1px solid";
+      containerEl.style.padding = "5px 20px";
+      containerEl.style.width = "200px";
+
+      var personEl = document.createElement("div");
+      personEl.innerHTML = `<div><img src="avatar.jpeg" style="width:40px;border-radius:9999px;margin-right:10px"/></div><div>${person.nama}</div>`;
+      personEl.style.display = "flex";
+      personEl.style.alignItems = "center";
+
+      var infoEl = document.createElement("div");
+      infoEl.innerHTML = `<div>${person.gender} / ${person.umur} tahun</div><div>${person.status}</div>`;
+
+      containerEl.appendChild(personEl);
+      containerEl.appendChild(infoEl);
+      peopleEL.appendChild(containerEl);
+    });
+  }
+
+  getData();
+</script>
