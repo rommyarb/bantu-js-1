@@ -4,6 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tugas JS</title>
+    <style>
+      #people {
+        display: grid;
+        margin-top: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+      }
+    </style>
   </head>
   <body>
     <div style="display: flex">
@@ -42,8 +51,15 @@
         action="#"
         onsubmit="find();return false"
       >
-        <input id="filterNama" type="text" placeholder="Masukkan nama..." />
-        <button style="margin-left: 2.5px" type="submit">Find</button>
+        <input
+          id="filterNama"
+          type="text"
+          style="padding: 5px 10px"
+          placeholder="Masukkan nama..."
+        />
+        <button style="margin-left: 5px; padding: 5px 10px" type="submit">
+          Find
+        </button>
       </form>
       <div id="people"></div>
     </div>
@@ -75,10 +91,9 @@
 
     people.forEach(function (person) {
       var containerEl = document.createElement("div");
-      containerEl.style.marginTop = "10px";
       containerEl.style.border = "black 1px solid";
       containerEl.style.padding = "5px 20px";
-      containerEl.style.width = "200px";
+      containerEl.style.backgroundColor = "lightgray";
 
       var personEl = document.createElement("div");
       personEl.innerHTML = `<div><img src="avatar.jpeg" style="width:30px;border-radius:9999px;margin-right:10px"/></div><div style="font-size:1.2rem">${person.nama}</div>`;
