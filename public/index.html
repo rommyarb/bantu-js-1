@@ -81,12 +81,14 @@
       containerEl.style.width = "200px";
 
       var personEl = document.createElement("div");
-      personEl.innerHTML = `<div><img src="avatar.jpeg" style="width:40px;border-radius:9999px;margin-right:10px"/></div><div>${person.nama}</div>`;
+      personEl.innerHTML = `<div><img src="avatar.jpeg" style="width:30px;border-radius:9999px;margin-right:10px"/></div><div>${person.nama}</div>`;
       personEl.style.display = "flex";
       personEl.style.alignItems = "center";
 
       var infoEl = document.createElement("div");
-      infoEl.innerHTML = `<div>${person.gender} / ${person.umur} tahun</div><div>${person.status}</div>`;
+      infoEl.style.display = "flex";
+      infoEl.style.alignItems = "center";
+      infoEl.innerHTML = `<div style="width:100%;">${person.gender} / ${person.umur} tahun</div><div style="text-align:right">${person.status}</div>`;
 
       containerEl.appendChild(personEl);
       containerEl.appendChild(infoEl);
